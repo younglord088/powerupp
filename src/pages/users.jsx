@@ -92,7 +92,35 @@ const UserContribution = () => {
           <div id='contribution-container' data-metype-account-id='1003992' data-metype-host='https://www.metype.com/'></div>
         </>
       ) : (
+
         <div>
+          <>
+          <div style={{ marginBottom: "20px" }}>
+            <button onClick={() => setSelectedForm("event")} style={buttonStyle}>
+              Contribute an Event
+            </button>
+            <button onClick={() => setSelectedForm("article")} style={buttonStyle}>
+              Contribute an Article
+            </button>
+            <button onClick={() => setSelectedForm("opportunity")} style={buttonStyle}>
+              Contribute an Opportunity
+            </button>
+            <button onClick={() => navigate('/use')} style={buttonStyle}>
+              My Contribution
+            </button>
+          </div>
+
+          {selectedForm && (
+            <iframe
+              src={getIframeSrc()}
+              style={{ width: "100%", height: "600px", border: "none" }}
+              title="Metype Contribution Form"
+            ></iframe>
+          )}
+
+          {/* Metype container for contributions */}
+          <div id='contribution-container' data-metype-account-id='1003992' data-metype-host='https://www.metype.com/'></div>
+        </>
           <p>Please sign in to contribute.</p>
           <button onClick={handleSignInClick} style={signInButtonStyle}>
             Sign In
