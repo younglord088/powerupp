@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../components/layout/navbar";
+import { useUser } from '../UserContext'; // Adjust the import path based on your file structure
 
 const UserContribution = () => {
   const [selectedForm, setSelectedForm] = useState(null);
   const navigate = useNavigate();
+  const { user, loading } = useUser(); // Destructure user and loading from context
+
+  // Redirect if the user is not logged in
+  useEffect(() => {
+    if (!loading && !user) {
+      window.location.href = 'https://indiawaterportal-main-madrid.qtstage.io/sign-in'; // Redirect to sign-in page
+    }
+  }, [loading, user]);
 
   // Function to return iframe source based on the selected form with dynamic topic_value
   const getIframeSrc = () => {
-    const baseURL = "https://www.metype.com/contribution-editor?account_id=1003992&font_url=&font_family=";
+    const baseURL = "https://staging.metype.com//contribution-editor?account_id=1002996&amp;font_url=&amp;font_family=&amp;";
     switch (selectedForm) {
       case "event":
         return `${baseURL}&topic_type=contribution&topic_value=event`;
@@ -42,46 +52,53 @@ const UserContribution = () => {
 
     document.body.appendChild(script);
 
-    // Clean up the script when the component unmounts
     return () => {
       document.body.removeChild(script);
     };
   }, []);
 
+  if (loading) return <div>Loading...</div>;
+
   return (
     <div>
-
+      <Navbar />
       <h2>User Contributions</h2>
-      <div style={{ marginBottom: "20px" }}>
-        <button onClick={() => setSelectedForm("event")} style={buttonStyle}>
-          Contribute an Event
-        </button>
-        <button onClick={() => setSelectedForm("article")} style={buttonStyle}>
-          Contribute an Article
-        </button>
-        <button onClick={() => setSelectedForm("opportunity")} style={buttonStyle}>
-          Contribute an Opportunity
-        </button>
-        <button onClick={() => navigate('/use')} style={buttonStyle}>
-          My Contribution
-        </button>
-      </div>
+      {user ? (
+        <>
+          <div style={{ marginBottom: "20px" }}>
+            <button onClick={() => setSelectedForm("event")} style={buttonStyle}>
+              Contribute an Event
+            </button>
+            <button onClick={() => setSelectedForm("article")} style={buttonStyle}>
+              Contribute an Article
+            </button>
+            <button onClick={() => setSelectedForm("opportunity")} style={buttonStyle}>
+              Contribute an Opportunity
+            </button>
+            <button onClick={() => navigate('/use')} style={buttonStyle}>
+              My Contribution
+            </button>
+          </div>
 
-      {selectedForm && (
-        <iframe
-          src={getIframeSrc()}
-          style={{ width: "100%", height: "600px", border: "none" }}
-          title="Metype Contribution Form"
-        ></iframe>
+          {selectedForm && (
+            <iframe
+              src={getIframeSrc()}
+              style={{ width: "100%", height: "600px", border: "none" }}
+              title="Metype Contribution Form"
+            ></iframe>
+          )}
+
+          {/* Metype container for contributions */}
+          <div id='contribution-container' data-metype-account-id='1003992' data-metype-host='https://www.metype.com/'></div>
+        </>
+      ) : (
+        <div>
+          <p>Please sign in to contribute.</p>
+          <button onClick={handleSignInClick} style={signInButtonStyle}>
+            Sign In
+          </button>
+        </div>
       )}
-
-      {/* Metype container for contributions */}
-      <div id='contribution-container' data-metype-account-id='1003992' data-metype-host='https://www.metype.com/'></div>
-
-      {/* Add sign-in button */}
-      <button onClick={handleSignInClick} style={signInButtonStyle}>
-        Sign In
-      </button>
     </div>
   );
 };
