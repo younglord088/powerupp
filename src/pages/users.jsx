@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import Navbar from "../components/layout/navbar";
+
 import { useUser } from '../UserContext'; // Adjust the import path based on your file structure
 
 const UserContribution = () => {
@@ -61,7 +61,7 @@ const UserContribution = () => {
 
   return (
     <div>
-      <Navbar />
+
       <h2>User Contributions</h2>
       {user ? (
         <>
