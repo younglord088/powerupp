@@ -1,52 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../UserContext';
 
 const UserContribution = () => {
   const [selectedForm, setSelectedForm] = useState(null);
   const navigate = useNavigate();
-  const { user, loading } = useUser(); 
 
-  console.log('Users',user)
-
+  // Function to return iframe source based on the selected form with dynamic topic_value
   const getIframeSrc = () => {
+    const baseURL = "https://www.metype.com/contribution-editor?account_id=1003992&font_url=&font_family=";
     switch (selectedForm) {
       case "event":
-        return "https://indiawaterportal-demo.madrid.quintype.io/metype?type=event";
+        return `${baseURL}&topic_type=contribution&topic_value=event`;
       case "article":
-        return "https://indiawaterportal-demo.madrid.quintype.io/metype?type=article";
+        return `${baseURL}&topic_type=contribution&topic_value=article`;
       case "opportunity":
-        return "https://indiawaterportal-demo.madrid.quintype.io/metype?type=opportunity";
+        return `${baseURL}&topic_type=contribution&topic_value=opportunity`;
       default:
         return "";
     }
   };
 
-  // Handle redirection based on user login status
-  useEffect(() => {
-    if (!loading && !user) {
-      const currentPath = window.location.pathname;
-      localStorage.setItem('intendedPath', currentPath);
-
-      window.location.href = 'https://indiawaterportal-demo.madrid.quintype.io/sign-in';
-    }
-  }, [loading, user]);
+  const handleSignInClick = () => {
+    window.open('https://indiawaterportal-demo.madrid.quintype.io/sign-in', '_blank'); 
+  };
 
   useEffect(() => {
-    // After login, check if the intended path exists, and redirect the user to that path
-    const intendedPath = localStorage.getItem('intendedPath');
-    if (user && intendedPath) {
-      localStorage.removeItem('intendedPath'); // Clear the stored path
-      navigate(intendedPath); // Redirect the user to the stored path
-    }
-  }, [user, navigate]);
+    // Dynamically load the Metype script after component mount
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://www.metype.com/widget/v1.0/talktype.js';  // Path to the Metype talktype widget
+    script.async = true;
+    
+    script.onload = () => {
+      // Ensure Metype initializes after the script loads
+      if (window.talktype) {
+        window.talktype(() => {
+          window.talktype.contributionWidgetIframe(document.getElementById('contribution-container'));
+        });
+      }
+    };
 
-  if (loading) {
-    return <div>Loading...</div>; // Show a loading message while checking login status
-  }
+    document.body.appendChild(script);
+
+    // Clean up the script when the component unmounts
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div>
+
       <h2>User Contributions</h2>
       <div style={{ marginBottom: "20px" }}>
         <button onClick={() => setSelectedForm("event")} style={buttonStyle}>
@@ -62,6 +66,7 @@ const UserContribution = () => {
           My Contribution
         </button>
       </div>
+
       {selectedForm && (
         <iframe
           src={getIframeSrc()}
@@ -69,6 +74,14 @@ const UserContribution = () => {
           title="Metype Contribution Form"
         ></iframe>
       )}
+
+      {/* Metype container for contributions */}
+      <div id='contribution-container' data-metype-account-id='1003992' data-metype-host='https://www.metype.com/'></div>
+
+      {/* Add sign-in button */}
+      <button onClick={handleSignInClick} style={signInButtonStyle}>
+        Sign In
+      </button>
     </div>
   );
 };
@@ -78,6 +91,17 @@ const buttonStyle = {
   marginRight: "10px",
   padding: "10px 20px",
   backgroundColor: "#00796b",
+  color: "#fff",
+  border: "none",
+  borderRadius: "5px",
+  cursor: "pointer",
+  fontSize: "16px",
+};
+
+const signInButtonStyle = {
+  marginTop: "20px",
+  padding: "10px 20px",
+  backgroundColor: "#d32f2f",
   color: "#fff",
   border: "none",
   borderRadius: "5px",

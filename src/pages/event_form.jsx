@@ -1,13 +1,13 @@
 import React from 'react';
 import FormHeader from '../components/formHeader';
-import EventDetails from '../components/event_details';
-import EventObjective from '../components/event_ojective';
-import TargetAudience from '../components/target_audience';
-import WorkshopContent from '../components/workshop_content';
-import ResourcePerson from '../components/resource_person';
-import ParticipationFees from '../components/participation_fees';
-import ContactInfo from '../components/contact_info';
-import AdditionalInfo from '../components/additional_info';
+import EventDetails from '../components/event_components/event_details';
+import EventObjective from '../components/event_components/event_ojective';
+import TargetAudience from '../components/event_components/target_audience';
+import WorkshopContent from '../components/event_components/workshop_content';
+import ResourcePerson from '../components/event_components/resource_person';
+import ParticipationFees from '../components/event_components/participation_fees';
+import ContactInfo from '../components/event_components/contact_info';
+import AdditionalInfo from '../components/event_components/additional_info';
 import SubmitSection from '../components/submit_section';
 
 const EventForm = () => {
@@ -23,11 +23,11 @@ const EventForm = () => {
         maxWidth: '800px',
         margin: '40px auto',
         padding: '30px',
-        backgroundColor: '#e8f4f2', // Soft blue background for the form
+        backgroundColor: '#e8f4f2',
         borderRadius: '12px',
         boxShadow: '0 2px 15px rgba(0, 0, 0, 0.1)',
         fontFamily: 'Arial, sans-serif',
-        color: '#333', // Darker text for better contrast
+        color: '#333',
       }}
     >
       <FormHeader
@@ -83,8 +83,10 @@ const EventForm = () => {
             fontSize: '16px',
           }}
         />
+        
       </div>
     </form>
+    
   );
 };
 

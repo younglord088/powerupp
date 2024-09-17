@@ -12,6 +12,7 @@ import UserProfile from './pages/userProfile'
 
 function Home() {
   return <h2>Home Page</h2>;
+  
 }
 
 function About() {
