@@ -9,11 +9,11 @@ const UserContribution = () => {
   const { user, loading } = useUser(); // Destructure user and loading from context
 
   // Redirect if the user is not logged in
-  useEffect(() => {
-    if (!loading && !user) {
-      window.location.href = 'https://indiawaterportal-main-madrid.qtstage.io/sign-in'; // Redirect to sign-in page
-    }
-  }, [loading, user]);
+  // useEffect(() => {
+  //   if (!loading && !user) {
+  //     window.location.href = 'https://indiawaterportal-main-madrid.qtstage.io/sign-in'; // Redirect to sign-in page
+  //   }
+  // }, [loading, user]);
 
   // Function to return iframe source based on the selected form with dynamic topic_value
   const getIframeSrc = () => {
