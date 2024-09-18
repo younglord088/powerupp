@@ -1,126 +1,37 @@
-// import { useState, useEffect } from "react";
-// import { useLocation } from "react-router-dom";
-// import IWPlogo from "../../assets/IWPlogo.png"; 
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from '../../assets/IWPlogo.png';
 
-// const navigationItems = [
-//   { label: "Home", href: "/" },
-//   { label: "Visualizations", href: "/visualizations" },
-//   { label: "Statistics", href: "/statistics" },
-//   {
-//     label: "Exit",
-//     href: "https://www.indiawaterportal.org",
-//   },
-// ];
 
-// const NavItem = ({ label, href }) => {
-//   const location = useLocation();
+function CollapsibleExample() {
+  return (
+    <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: '#2b6777' }} variant="dark">
+      <Container>
+        <Navbar.Brand href="#home" style={{ color: '#ffffff', fontWeight: 'bold' }}>
+          <img src={logo} alt='Indian Water Portals' style={{ height: '45px' }} />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#features" style={{ color: '#ffffff' }}>Home</Nav.Link>
+          </Nav>
+          <Nav>
+            <NavDropdown title="Contribute" id="collapsible-nav-dropdown" menuVariant="light" style={{ color: '#333' }}>
+              <NavDropdown.Item href="#action/3.1" style={{ color: '#2b6777' }}>Event</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2" style={{ color: '#2b6777' }}>
+                Article
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3" style={{ color: '#2b6777' }}>Opportunity</NavDropdown.Item>
+              <NavDropdown.Divider />
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
 
-//   return (
-//     <div
-//       className={`transition-all ease-in-out focus-visible:outline-2 ${
-//         location.pathname === href ? "" : "hover:bg-grey-100"
-//       }`}
-//     >
-//       <a href={href}>
-//         <p className="text-lg md:text-base lg:text-lg text-center">{label}</p>
-//       </a>
-//       <div className="mx-8"></div>
-//     </div>
-//   );
-// };
-
-// export default function Navbar() {
-//   const [isMenuOpen, setMenuOpen] = useState(false);
-//   const [isScrolled, setScrolled] = useState(false);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       setScrolled(window.scrollY > 50);
-//     };
-
-//     window.addEventListener("scroll", handleScroll);
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll);
-//     };
-//   }, []);
-
-//   useEffect(() => {
-//     document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
-//   }, [isMenuOpen]);
-
-//   return (
-//     <>
-//       <nav className="sticky top-0 sm:z-[2] w-full flex items-center xl:justify-center px-4 py-4">
-//         {!isScrolled && (
-//           <img
-//             src={IWPlogo}
-//             alt="India-Water-Portal-Logo"
-//             className="absolute w-[12rem] h-[4rem] pl-[2rem] left-0"
-//             priority="true"
-//           />
-//         )}
-//         <div className="hidden h-10 w-3/5 xl:flex xl:justify-between xl:items-center px-3 py-8 rounded-full border-1 border-solid border-emrald-800 bg-slate-200 bg-opacity-60 backdrop-blur-xl space-x-2">
-//           {navigationItems.map((item) => (
-//             <div
-//               key={item.href}
-//               className="w-32 font-[600] py-2 flex justify-center rounded-full transition-all ease-in-out focus-visible:outline-2"
-//             >
-//               <div className="text-[#159AB2] hover:text-[#036876] hover:bg-gray-300 rounded-full py-2 px-4">
-//                 <NavItem label={item.label} href={item.href} />
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//         <div className="flex items-center justify-end w-full xl:hidden">
-//           <button
-//             id="menu-btn"
-//             aria-label="Toggle Menu"
-//             type="button"
-//             className={`z-50 hamburger focus:outline-none ${
-//               isMenuOpen ? "open" : ""
-//             }`}
-//             onClick={() => setMenuOpen(!isMenuOpen)}
-//           >
-//             <span className="hamburger-top"></span>
-//             <span className="hamburger-middle"></span>
-//             <span className="hamburger-bottom"></span>
-//           </button>
-//         </div>
-//       </nav>
-//       <div
-//         id="menu"
-//         className={`absolute z-[1] top-0 bottom-0 left-0 ${
-//           isMenuOpen ? "block" : "hidden"
-//         } w-full min-h-screen py-1 pt-40 px-8 backdrop-blur-lg`}
-//       >
-//         <div className="flex items-center justify-end w-full xl:hidden">
-//           <button
-//             id="menu-btn"
-//             aria-label="Toggle Menu"
-//             type="button"
-//             className={`z-50 hamburger focus:outline-none ${
-//               isMenuOpen ? "open" : ""
-//             }`}
-//             onClick={() => setMenuOpen(!isMenuOpen)}
-//           >
-//             <span className="hamburger-top"></span>
-//             <span className="hamburger-middle"></span>
-//             <span className="hamburger-bottom"></span>
-//           </button>
-//         </div>
-//         <div className="flex flex-col self-end space-y-8 text-lg text-[#159AB2] hover:text-[#036876] font-medium uppercase p-8 border-1 border-[#222] rounded-[2rem] bg-sky-200 bg-opacity-80">
-//           {navigationItems.map(({ label, href }) => (
-//             <a
-//               href={href}
-//               key={label}
-//               className="hover:text-[#036876]"
-//               onClick={() => setMenuOpen(false)}
-//             >
-//               {label}
-//             </a>
-//           ))}
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
+export default CollapsibleExample;
