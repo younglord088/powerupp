@@ -42,7 +42,7 @@ export default function App() {
           </section>
 
           {/* Newsletter Section */}
-          <section>
+          {/* <section>
             <form action=''>
               <MDBRow className='d-flex justify-content-center'>
                 <MDBCol size="auto">
@@ -62,7 +62,7 @@ export default function App() {
                 </MDBCol>
               </MDBRow>
             </form>
-          </section>
+          </section> */}
 
           {/* Info Section */}
           <section className='mb-3'>
@@ -75,13 +75,13 @@ export default function App() {
           <section className='mb-3'>
             <MDBRow className='d-flex justify-content-center'>
               <MDBCol size="auto">
-                <a href="#!" className="text-white m-2" style={{ fontWeight: 'bold' }}>About Us</a>
+                <a href="https://www.indiawaterportal.org/about-us" className="text-white m-2" style={{ fontWeight: 'bold' }}>About Us</a>
               </MDBCol>
               <MDBCol size="auto">
-                <a href="#!" className="text-white m-2" style={{ fontWeight: 'bold' }}>Contact</a>
+                <a href="https://www.indiawaterportal.org/terms-of-use" className="text-white m-2" style={{ fontWeight: 'bold' }}>Terms of Use</a>
               </MDBCol>
               <MDBCol size="auto">
-                <a href="#!" className="text-white m-2" style={{ fontWeight: 'bold' }}>Privacy Policy</a>
+                <a href="https://www.indiawaterportal.org/privacy-policy" className="text-white m-2" style={{ fontWeight: 'bold' }}>Privacy Policy</a>
               </MDBCol>
             </MDBRow>
           </section>
@@ -91,7 +91,7 @@ export default function App() {
   );
 }
 
-// Add the following CSS to stick the footer at the bottom
+
 const pageContainer = {
   display: 'flex',
   flexDirection: 'column',
@@ -99,7 +99,7 @@ const pageContainer = {
 };
 
 const contentWrap = {
-  flex: '1',  // Takes up the remaining space in the viewport
+  flex: '1',  
 };
 
-// Apply these styles to your main content wrapper and page container
+

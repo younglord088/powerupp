@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
   // Fetch user data
   const checkUserLogin = async () => {
     try {
-      const response = await fetch('https://indiawaterportal-main-madrid.qtstage.io/api/auth/v1/users/me', {
+      const response = await fetch('https://www.indiawaterportal.org/api/auth/v1/users/me', {
         credentials: 'include',
       });
       const data = await response.json();
