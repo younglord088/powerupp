@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   const checkUserLogin = async () => {
     try {
       const response = await fetch('https://powerup-server.vercel.app/api/auth/v1/users/me', {
-        credentials: 'include',
+        credentials: 'include', // Ensures cookies are sent along
       });
       const data = await response.json();
       console.log('User data:', data);
@@ -28,6 +28,7 @@ export const UserProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     checkUserLogin();
