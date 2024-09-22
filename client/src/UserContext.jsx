@@ -9,26 +9,25 @@ export const UserProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Fetch user data
-const checkUserLogin = async () => {
+  const checkUserLogin = async () => {
     try {
-      const response = await fetch('https://your-server-domain.com/api/auth/v1/users/me', {
+      const response = await fetch('https://powerup-server.vercel.app/api/auth/v1/users/me', {
         credentials: 'include', // Ensures cookies are sent along
       });
       const data = await response.json();
       console.log('User data:', data);
       if (data.user) {
-        setUser(data.user); // Set the user data in your frontend
+        setUser(data.user);
       } else {
-        setUser(null); // Handle case where user data is not returned
+        setUser(null);
       }
     } catch (error) {
       console.error('Error fetching user data:', error);
       setUser(null);
     } finally {
-      setLoading(false); // Set loading state to false after completion
+      setLoading(false);
     }
-};
-
+  };
   
 
   useEffect(() => {
