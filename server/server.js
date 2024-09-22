@@ -10,7 +10,7 @@ app.use(cors(
 ));
 
 // const proxyUrl = "http://localhost:3002";
-const targetUrl = "https://www.indiawaterportal.org";
+const targetUrl = process.env.TARGETURL;
 
 app.use(
   "/api/auth",
@@ -18,6 +18,11 @@ app.use(
     target: targetUrl,
     changeOrigin: true,
   })
+);
+
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+    }
 );
 
 const port = process.env.PORT || 5000;
