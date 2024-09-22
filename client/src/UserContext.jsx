@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
   // Fetch user data
   const checkUserLogin = async () => {
     try {
-      const response = await fetch('http://localhost:30002/api/auth/v1/users/me', {
+      const response = await fetch('https://powerup-server.vercel.app/api/auth/v1/users/me', {
         credentials: 'include',
       });
       const data = await response.json();
@@ -29,7 +29,6 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  // Check user login when the component mounts
   useEffect(() => {
     checkUserLogin();
   }, []);
