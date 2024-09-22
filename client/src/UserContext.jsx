@@ -11,10 +11,11 @@ export const UserProvider = ({ children }) => {
   // Fetch user data
   const checkUserLogin = async () => {
     try {
-      const response = await fetch('https://www.indiawaterportal.org/api/auth/v1/users/me', {
+      const response = await fetch('http://localhost:30002/api/auth/v1/users/me', {
         credentials: 'include',
       });
       const data = await response.json();
+      console.log('User data:', data);
       if (data.user) {
         setUser(data.user);
       } else {

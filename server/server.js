@@ -6,7 +6,8 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 dotenv.config();
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+));
 
 // const proxyUrl = "http://localhost:3002";
 const targetUrl = "https://www.indiawaterportal.org";
