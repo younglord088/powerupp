@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
   // Fetch user data
   const checkUserLogin = async () => {
     try {
-      const response = await fetch('https://powerup-server.vercel.app/api/auth/v1/users/me', {
+      const response = await fetch('https://psychic-adventure-5wppx6w64xvcv5v4-5001.app.github.dev/api/auth/v1/users/me', {
         credentials: 'include',
       });
       const data = await response.json();
