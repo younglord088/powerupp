@@ -12,13 +12,13 @@ function CollapsibleExample() {
   return (
     <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: '#2b6777' }} variant="dark">
       <Container>
-        <Navbar.Brand href="#home" style={{ color: '#ffffff', fontWeight: 'bold' }}>
+        <Navbar.Brand href="https://www.indiawaterportal.org/" style={{ color: '#ffffff', fontWeight: 'bold' }}>
           <img src={logo} alt='Indian Water Portals' style={{ height: '45px' }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#" style={{ color: '#ffffff' }}>Home</Nav.Link>
+            <Nav.Link href="https://www.indiawaterportal.org/" style={{ color: '#ffffff' }}>Home</Nav.Link>
           </Nav>
           <Nav>
             
