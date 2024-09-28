@@ -29,7 +29,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  // Check user login when the component mounts
+  
   useEffect(() => {
     checkUserLogin();
   }, []);

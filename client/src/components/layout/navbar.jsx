@@ -21,14 +21,7 @@ function CollapsibleExample() {
             <Nav.Link href="#" style={{ color: '#ffffff' }}>Home</Nav.Link>
           </Nav>
           <Nav>
-            <NavDropdown title="Contribute" id="collapsible-nav-dropdown" menuVariant="light" style={{ color: '#333' }}>
-              <NavDropdown.Item href="#action/3.1" style={{ color: '#2b6777' }}>Event</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2" style={{ color: '#2b6777' }}>
-                Article
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3" style={{ color: '#2b6777' }}>Opportunity</NavDropdown.Item>
-              <NavDropdown.Divider />
-            </NavDropdown>
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
