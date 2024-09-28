@@ -18,7 +18,7 @@ function CollapsibleExample() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="https://www.indiawaterportal.org/" style={{ color: '#ffffff' }}>Home</Nav.Link>
+            <Nav.Link href="/" style={{ color: '#ffffff' }}>Home</Nav.Link>
           </Nav>
           <Nav>
             
