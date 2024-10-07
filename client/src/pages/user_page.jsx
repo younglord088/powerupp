@@ -1,90 +1,43 @@
 import React, { useContext } from "react";
-import { UserContext } from '../UserContext.jsx'; // Import the context where user data is stored
+import { UserContext } from '../UserContext.jsx'; 
 import Footer from "../components/layout/footer.jsx";
 
 const Use = () => {
-  const { user, activeSessionsCount, source } = useContext(UserContext); // Get user data from global state
+  const { user, activeSessionsCount, source } = useContext(UserContext); 
 
-  // Inline CSS for the page
-  const pageStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "80vh",
-    width: "800px",
-    backgroundColor: "#e0f7fa", // Light water-themed background
-    fontFamily: "'Roboto', sans-serif",
-  };
-
-  const cardStyle = {
-    padding: "20px",
-    backgroundColor: "#ffffff",
-    borderRadius: "15px",
-    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
-    width: "350px",
-    textAlign: "center",
-    border: "1px solid #0288d1", // Blue border to reflect water theme
-  };
-
-  const headingStyle = {
-    fontSize: "26px",
-    marginBottom: "20px",
-    color: "#0288d1", // Water blue color
-  };
-
-  const textStyle = {
-    fontSize: "18px",
-    marginBottom: "12px",
-    color: "#00796b", // Green for a nature-themed look
-  };
-
-  const sessionStyle = {
-    fontSize: "16px",
-    color: "#00796b", // Green for consistent design
-  };
-
-  const profileImageStyle = {
-    borderRadius: "50%",
-    width: "80px",
-    height: "80px",
-    marginBottom: "20px",
-    border: "2px solid #0288d1", // Blue border for the profile image
-  };
-
-  // If no user is logged in, show a loading or message
+  
   if (!user) {
-    return <div style={pageStyle}>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-[80vh] w-full bg-[#e0f7fa] font-roboto">
+        Loading...
+      </div>
+    );
   }
 
   return (
-    <div style={pageStyle}>
-      <div style={cardStyle}>
-        {/* User Avatar */}
-        <img
-          src="https://via.placeholder.com/80" // Placeholder image
-          alt="User Avatar"
-          style={profileImageStyle}
-        />
-        <h2 style={headingStyle}>User Profile</h2>
-        <p style={textStyle}>
+    <div className="flex justify-center items-center h-[80vh] w-full bg-[#e0f7fa] font-roboto">
+      <div className="p-6 bg-white rounded-lg shadow-md w-full max-w-xs md:max-w-md lg:max-w-lg text-center border border-[#0288d1]">
+        
+        <h2 className="text-2xl mb-6 text-[#0288d1]">User Profile</h2>
+        <p className="text-lg mb-4 text-[#00796b]">
           <strong>ID:</strong> {user.id}
         </p>
-        <p style={textStyle}>
+        <p className="text-lg mb-4 text-[#00796b]">
           <strong>Name:</strong> {user.name || "Not provided"}
         </p>
-        <p style={textStyle}>
+        <p className="text-lg mb-4 text-[#00796b]">
           <strong>Email:</strong> {user.email}
         </p>
-        <p style={textStyle}>
+        <p className="text-lg mb-4 text-[#00796b]">
           <strong>Username:</strong> {user.username}
         </p>
-        <p style={textStyle}>
+        <p className="text-lg mb-4 text-[#00796b]">
           <strong>Verification Status:</strong> {user.verificationStatus || "Not Verified"}
         </p>
-        <p style={textStyle}>
+        <p className="text-lg mb-4 text-[#00796b]">
           <strong>Active Sessions:</strong> {activeSessionsCount}
         </p>
-        <p style={sessionStyle}>
+        <p className="text-sm text-[#00796b]">
           <strong>Source:</strong> {source || "Unknown"}
         </p>
       </div>

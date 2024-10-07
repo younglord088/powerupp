@@ -45,7 +45,7 @@ const OpportunityForm = () => {
         maxWidth: '800px',
         margin: '40px auto',
         padding: '30px',
-        backgroundColor: '#f4f9f4', // Soft background color
+        backgroundColor: '#e8f4f2', // Soft background color
         borderRadius: '12px',
         boxShadow: '0 2px 15px rgba(0, 0, 0, 0.1)',
         fontFamily: 'Arial, sans-serif',
@@ -55,7 +55,7 @@ const OpportunityForm = () => {
       <h2
         style={{
           textAlign: 'center',
-          color: '#333', // Consistent color for headings
+          color: '#52ab98', // Consistent color for headings
           fontSize: '28px',
           marginBottom: '20px',
         }}
@@ -63,9 +63,7 @@ const OpportunityForm = () => {
         Opportunity Submission Form
       </h2>
 
-      <div style={{ color: '#52ab98', marginBottom: '20px' }}>
-        <h3 style={{ textAlign: 'center', fontSize: '20px' }}>Opportunity Details</h3>
-      </div>
+      
       <OpportunityDetails formData={formData} handleChange={handleChange} />
 
       <div style={{ color: '#52ab98', marginBottom: '20px' }}>

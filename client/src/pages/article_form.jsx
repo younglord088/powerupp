@@ -3,15 +3,25 @@ import React, { useState } from 'react';
 const ArticleForm = () => {
   const [formData, setFormData] = useState({
     title: '',
+    subtitle: '',
     author: '',
-    publicationDate: '',
-    content: '',
+    submissionDate: '',
+    authorBio: '',
+    mainBody: '',
+    photos: [],
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({
+      ...formData,
+      photos: Array.from(e.target.files), // Handle multiple file uploads
     });
   };
 
@@ -34,7 +44,6 @@ const ArticleForm = () => {
         fontFamily: 'Arial, sans-serif',
         color: '#333', // Darker text for better contrast
       }}
-
     >
       <h2
         style={{
@@ -57,7 +66,7 @@ const ArticleForm = () => {
             color: '#2b6777',
           }}
         >
-          Article Title:
+          Title:
         </label>
         <input
           type="text"
@@ -65,6 +74,33 @@ const ArticleForm = () => {
           value={formData.title}
           onChange={handleChange}
           placeholder="Enter the title of the article"
+          style={{
+            width: '100%',
+            padding: '10px',
+            borderRadius: '8px',
+            border: '1px solid #ccc',
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <label
+          style={{
+            display: 'block',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            marginBottom: '5px',
+            color: '#2b6777',
+          }}
+        >
+          Subtitle:
+        </label>
+        <input
+          type="text"
+          name="subtitle"
+          value={formData.subtitle}
+          onChange={handleChange}
+          placeholder="Enter the subtitle of the article"
           style={{
             width: '100%',
             padding: '10px',
@@ -111,12 +147,12 @@ const ArticleForm = () => {
             color: '#2b6777',
           }}
         >
-          Publication Date:
+          Submission Date:
         </label>
         <input
           type="date"
-          name="publicationDate"
-          value={formData.publicationDate}
+          name="submissionDate"
+          value={formData.submissionDate}
           onChange={handleChange}
           style={{
             width: '100%',
@@ -137,11 +173,39 @@ const ArticleForm = () => {
             color: '#2b6777',
           }}
         >
-          Article Content:
+          Author's Bio (50-100 words):
         </label>
         <textarea
-          name="content"
-          value={formData.content}
+          name="authorBio"
+          value={formData.authorBio}
+          onChange={handleChange}
+          placeholder="Write a short bio of the author"
+          style={{
+            width: '100%',
+            padding: '10px',
+            borderRadius: '8px',
+            border: '1px solid #ccc',
+            height: '100px',
+            resize: 'vertical',
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <label
+          style={{
+            display: 'block',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            marginBottom: '5px',
+            color: '#2b6777',
+          }}
+        >
+          Main Body:
+        </label>
+        <textarea
+          name="mainBody"
+          value={formData.mainBody}
           onChange={handleChange}
           placeholder="Write the content of the article..."
           style={{
@@ -151,6 +215,32 @@ const ArticleForm = () => {
             border: '1px solid #ccc',
             height: '200px',
             resize: 'vertical',
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <label
+          style={{
+            display: 'block',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            marginBottom: '5px',
+            color: '#2b6777',
+          }}
+        >
+          Photos:
+        </label>
+        <input
+          type="file"
+          name="photos"
+          multiple
+          onChange={handleFileChange}
+          style={{
+            width: '100%',
+            padding: '10px',
+            borderRadius: '8px',
+            border: '1px solid #ccc',
           }}
         />
       </div>

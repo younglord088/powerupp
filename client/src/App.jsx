@@ -8,6 +8,7 @@ import ArticleForm from './pages/article_form';
 import UserProfile from './pages/userProfile';
 import Header from './components/layout/navbar';
 import Footer from './components/layout/footer';
+import Eventyasah from './pages/event1';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/opp" element={<OpportunityForm />} />
             <Route path="/article" element={<ArticleForm />} />
             <Route path="/pro" element={<UserProfile />} />
+            <Route path="/eveyash" element={<Eventyasah />} />
           </Routes>
         </Router>
       </div>
